@@ -8,6 +8,8 @@ const puppeteer =require('puppeteer');
 
 app.use(cors(corsOption))
 
+let sharedLocation=""
+
 app.get('/api',(req,res)=>{
     const DataTaker = async () => {
             const browser = await puppeteer.launch();
@@ -15,7 +17,7 @@ app.get('/api',(req,res)=>{
     
     
             const page = await browser.newPage();
-            const url = 'https://www.indiatoday.in/weather/Latur-weather-forecast-today'
+            const url = `https://www.indiatoday.in/weather/${sharedLocation}-weather-forecast-today`
             await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36');
             await page.goto(url,{waitUntil:'domcontentloaded',timeout:30000});
 
@@ -29,12 +31,20 @@ app.get('/api',(req,res)=>{
             })
             res.json(data)
             console.log(data);
+            
             await browser.close();
     
       
     }
     
     DataTaker()
+})
+
+app.get('/submit',(req,res)=>{
+    sharedLocation = req.query.name
+    res.redirect('http://localhost:5173/')
+    console.log(sharedLocation);
+    
 })
 
 app.listen(8080,()=>{

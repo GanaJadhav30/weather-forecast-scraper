@@ -7,22 +7,15 @@ function App() {
 
   const [array, setarray] = useState([])
   const [count, setcount] = useState(0)
+  
     const fetchApi = async () => {
       const response = await axios.get('http://localhost:8080/api')
       
       setarray(response.data[0])
     }  
-    // useEffect(()=>{
-    //   fetchApi()
-    // },[count]) 
-
-  const handleClick = (()=>{
-
-    fetchApi();
-    setcount(count+1)
-    return console.log(count);
-     
-  })
+    useEffect(()=>{
+      fetchApi()
+    },[]) 
 
   return (
 
@@ -37,7 +30,12 @@ function App() {
         <p>place:{array.place}</p>
       </div>
       <div>
-        <button onClick={handleClick}>Fetch Data</button>
+        <form action="http://localhost:8080/submit" method="get">
+          <input type="text" name="name" placeholder='Enter location' />
+          <button  type='submit'>Fetch Data</button>
+        </form>
+        
+
       </div>
     </div>
       
