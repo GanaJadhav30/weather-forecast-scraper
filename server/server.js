@@ -11,10 +11,10 @@ app.use(cors(corsOption))
 let sharedLocation="Pune"
 
 app.get('/api',(req,res)=>{
+
+    
     const DataTaker = async () => {
             const browser = await puppeteer.launch();
-            
-    
     
             const page = await browser.newPage();
             const url = `https://www.indiatoday.in/weather/${sharedLocation}-weather-forecast-today`
