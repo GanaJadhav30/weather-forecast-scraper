@@ -42,7 +42,7 @@ app.get('/api',(req,res)=>{
 
 app.get('/submit',(req,res)=>{
     location = req.query.name
-    let sharedLocation = location.charAt(0).toUpperCase() + location.slice(1) 
+    sharedLocation = location.charAt(0).toUpperCase() + location.slice(1) 
     res.redirect('http://localhost:5173/')
     console.log(sharedLocation);
     
