@@ -8,7 +8,7 @@ const puppeteer =require('puppeteer');
 
 app.use(cors(corsOption))
 
-let sharedLocation=""
+let sharedLocation="Pune"
 
 app.get('/api',(req,res)=>{
     const DataTaker = async () => {
@@ -41,7 +41,8 @@ app.get('/api',(req,res)=>{
 })
 
 app.get('/submit',(req,res)=>{
-    sharedLocation = req.query.name
+    location = req.query.name
+    let sharedLocation = location.charAt(0).toUpperCase() + location.slice(1) 
     res.redirect('http://localhost:5173/')
     console.log(sharedLocation);
     
