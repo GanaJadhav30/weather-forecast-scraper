@@ -34,7 +34,8 @@ function App() {
 
     <>
  
-    <div className='h-dvh w-screen bg-zinc-800 overflow-x-hidden'>
+    <div style={{ backgroundImage: `url(/backgroundImg.jpg)`,backgroundSize:'cover' }} className='h-dvh w-screen bg-zinc-800 overflow-x-hidden'>
+      
       <div >
         <div className='w-screen h-50 py-20 text-white text-5xl font-semibold text-center'>
           <SplitText text="Weather App☁️" />
@@ -46,7 +47,6 @@ function App() {
               <p>Temp: {array.temp}</p>
               <p>Date: {array.date}</p>
               <p>Humidity: {array.humidity}</p>
-              
             </div>
           </div>
         </div>

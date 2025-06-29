@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+body {
+    height: 400px;
+   width: 100%;
+    background-image: url('./assets/backgroundImg.jpg');
+}
