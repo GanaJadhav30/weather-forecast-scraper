@@ -24,7 +24,7 @@ app.get('/api',(req,res)=>{
             const data = await page.evaluate (()=>{
                temp = document.querySelector('strong').textContent
                date = document.querySelector('.wtr_hdr_dte').textContent
-              place = document.querySelector('.wtr_ttl_lhs h1').textContent
+              place = document.querySelector('.wtr_brd_act').textContent
               humidity = document.querySelector('.wtr_crd_ttl').textContent
              const realData =  [{"temp":temp,"date":date,"place":place,"humidity":humidity}]
              return realData
