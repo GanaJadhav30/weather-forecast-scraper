@@ -4,15 +4,17 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import axios from 'axios'
 import SplitText from "./components/SplitText";
+import Button from './components/Button'
+import Spinner from './components/Spinner'
 
 function App() {
 
   const [array, setarray] = useState([])
-  const [count, setcount] = useState(0)
+  const [isLoading, setisLoading] = useState(false)
   
     const fetchApi = async () => {
       const response = await axios.get('http://localhost:8080/api')
-      
+      setisLoading(true)
       setarray(response.data[0])
     }  
     useEffect((e)=>{
@@ -21,14 +23,16 @@ function App() {
 
     const handleClick=async(e)=>{
       e.preventDefault();
-
+      setisLoading(false)
       const formData = new FormData(e.target)
       const name = formData.get('name')
       await fetch(`http://localhost:8080/submit?name=${name}`);
       await fetchApi()
       console.log("clicked")
       e.target.reset(); 
+      
     }
+    
 
   return (
 
@@ -54,8 +58,8 @@ function App() {
       </div>
       <div className='p-10 flex justify-center text-black'>
         <form method='get' action="http://localhost:8080/submit">
-          <input className='bg-white rounded-md p-2 m-4 ' type="text" name="name" placeholder='Enter location' />
-          <button className="rounded-full text-md inline-flex h-12 items-center justify-center  bg-neutral-950 px-6 font-medium text-neutral-50 shadow-lg shadow-neutral-500/20 transition active:scale-95 bg-zinc-600">Fetch Data</button>
+          
+          {isLoading ? <Button /> : <Spinner />}
         </form>
       </div>
     </div>
